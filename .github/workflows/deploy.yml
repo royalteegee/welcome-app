@@ -13,6 +13,6 @@ jobs:
       AWS_DEFAULT_REGION: us-east-1
     steps:
       - name: go and clone the repo
-        run: git clone {{ secrets.REPO_NAME}}
+        run: git clone https://github.com/royalteegee/welcome-app.git
       - name: copy to s3 bucket
         run: aws s3 sync ./welcome-app s3://smarthub-testing --exclude ".git/*" ".github/*"

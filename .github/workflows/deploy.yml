@@ -15,4 +15,4 @@ jobs:
       - name: go and clone the repo
         run: git clone https://github.com/royalteegee/welcome-app.git
       - name: copy to s3 bucket
-        run: aws s3 sync ./welcome-app s3://smarthub-testing --exclude ".git/*" ".github/*"
+        run: aws s3 sync ./welcome-app s3://smarthub-testing --exclude ".git/*"

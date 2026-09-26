@@ -1,18 +1,19 @@
-name: my first cicd
+name: Deploy to s3
 
 on:
   push:
     branches: [main]
+  # pull_request:
 
 jobs:
-  push-to-s3:
+  s3-deploy:
     runs-on: ubuntu-latest
     env:
-      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID}}
-      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY}}
-      AWS_DEFAULT_REGION: us-east-1
+      AWS_ACCESS_KEY_ID: ${{ AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ AWS_SECRET_ACCESS_KEY }}
+      AWS_DEFAULT_REGION: ${{ AWS_DEFAULT_REGION }}
     steps:
-      - name: go and clone the repo
+      - name: git clone the repo
         run: git clone https://github.com/royalteegee/welcome-app.git
-      - name: copy to s3 bucket
-        run: aws s3 sync ./welcome-app s3://smarthub-testing --exclude ".git/*"
+      - name: copy the files to s3
+        run: aws s3 sync ./welcome-app s3://smarthub-testing
